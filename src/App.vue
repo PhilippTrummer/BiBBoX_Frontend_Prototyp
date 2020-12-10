@@ -1,16 +1,19 @@
 <template>
   <div>
+    <navbar></navbar>
      <Store />
   </div>
 </template>
 
 <script>
 import Store from './components/Store.vue'
+import Navbar from './components/Navbar.vue'
 
 export default {
   name: 'App',
   components: {
-    Store
+    Store,
+    'navbar': Navbar
   }
 }
 </script>
