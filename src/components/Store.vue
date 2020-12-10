@@ -1,48 +1,49 @@
 <template>
-  <div >
-    <div>{{ this.appInfo.short_name }}</div>
+  <div style="display:flex;flex-flow:row wrap">
+    <div v-for="app in this.apps.value" :key="app">
+      <StoreApp :appName="app" class="storeApp" />
+    </div>
   </div>
 </template>
 
 <script>
+import StoreApp from "./StoreApp.vue";
 import Vue from "vue";
+
 export default {
-  props: {
-    appName: String,
+  components: {
+    StoreApp,
+  },
+
+  mounted() {
+    const axios = require("axios");
+    var self = this;
+    axios.get("http://127.0.0.1:5000/api/v1/apps").then((response) => {
+      Vue.set(self.apps, "value", response.data);
+    });
   },
 
   data() {
     return {
-      appInfo: {},
-      appIcon: {},
+      apps: {},
     };
-  },
-
-  mounted() {
-    var urlinfo =
-      "https://raw.githubusercontent.com/bibbox/" +
-      this.appName +
-      "/master/appinfo.json";
-
-    this.appIcon =
-      "https://raw.githubusercontent.com/bibbox/" +
-      this.appName +
-      "/master/icon.png";
-
-    const axios = require("axios");
-    var self = this;
-    
-    axios
-      .get(urlinfo)
-      .then((response) => {
-          Vue.set(self, "appInfo", response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   },
 };
 </script>
 
 <style>
+.storeApp {
+  padding: 15px 10px 10px 10px;
+  text-align: center;
+  width: 150px;
+  float: left;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+  color: #555f7d;
+  margin: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  position: relative;
+}
 </style>
