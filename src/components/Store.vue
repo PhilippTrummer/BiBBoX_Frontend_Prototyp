@@ -1,7 +1,38 @@
 <template>
   <div style="display: flex; flex-flow: row wrap">
     <div v-for="app in this.apps.value" :key="app">
-      <StoreApp :appName="app" class="storeApp" />
+      <StoreApp :appName="app" class="storeApp" v-on:cardClicked="handleClick"/>
+    </div>
+    <div>
+      <b-modal size="huge" class="Modal" id="appModal" centered :title="appInfo.short_name" hide-footer>
+        <div>
+          <p style="font-family: 'Helvetica', 'sans-serif'"><a style="color:#176bae; font-weight:bold">Name</a>
+            <br>
+            {{appInfo.name}}
+          </p>
+          <p><a style="color:#176bae; font-weight:bold">Version</a>
+            <br>
+            {{appInfo.version}}
+          </p>
+          <p><a style="color:#176bae; font-weight:bold">Catalogue URL</a>
+            <br>
+            {{appInfo.catalogue_url}}
+          </p>
+          <p><a style="color:#176bae; font-weight:bold">Application URL</a>
+            <br>
+            {{appInfo.application_url}}
+          </p>
+          <p><a style="color:#176bae; font-weight:bold">Tags</a>
+            <br>
+            {{appInfo.tags}}
+          </p>
+          <p><a style="color:#176bae; font-weight:bold">Description</a>
+            <br>
+            {{appInfo.description}}
+          </p>
+        </div>
+        <b-button block @click="$bvModal.hide('appModal')">Install</b-button>
+      </b-modal>
     </div>
   </div>
 </template>
@@ -13,6 +44,13 @@ import Vue from "vue";
 export default {
   components: {
     StoreApp,
+  },
+
+  methods: {
+    handleClick(appInfo) {
+      this.appInfo = appInfo;
+      this.$bvModal.show("appModal");
+    },
   },
 
   mounted() {
@@ -27,6 +65,7 @@ export default {
   data() {
     return {
       apps: {},
+      appInfo: {},
     };
   },
 };
@@ -69,7 +108,12 @@ export default {
   border-bottom: solid 1px #176bae;
 }
 
-.name:hover {
+.storeApp:hover .name {
   border-bottom: solid 1px white;
+}
+
+.modal .modal-huge {
+  max-width: 1000px;
+  width: 1000px !important;
 }
 </style>
