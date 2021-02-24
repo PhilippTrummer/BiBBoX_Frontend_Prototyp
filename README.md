@@ -15,4 +15,5 @@ npm install -g @vue/cli
 ```
 npm install axios
 vue add bootstrap-vue
+vue add vuetify
 ```
