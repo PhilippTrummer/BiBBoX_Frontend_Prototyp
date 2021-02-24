@@ -19,20 +19,16 @@
           </p>
           <p>{{appInfo.name}}</p>
         </div>
+        <b-button block @click="$bvModal.hide('appModal')">Install</b-button>
       </b-modal>    
     </div>
   </div>
 </template>
 
 <script>
-
-//http://127.0.0.1:5010/api/v1/apps/
-//import axios from "axios";
 import Vue from "vue";
 
 export default {
-  //el: '#app',
-
   components: {
   },
 
