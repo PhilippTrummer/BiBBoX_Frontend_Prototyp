@@ -1,35 +1,23 @@
 <template>
-  <div style="display: flex; flex-flow: row wrap">
-    <div v-for="app in this.apps.value" :key="app">
-      <StoreApp :appName="app" class="storeApp" v-on:cardClicked="handleClick"/>
+  <div style="display: flex; flex-flow: row wrap;">
+    <div v-for="appGroup in this.apps.value" :key="appGroup">
+      <br><h1><a style="color: #176bae; text-align: left; padding: 0 10px; margin-bottom: 15px; font-size: 20px;">{{ appGroup.group_name }}</a></h1>
+      <div class="storeApp" v-for="appName in appGroup.group_members" :key="appName.app_dispay_name" >
+        <div class="container" v-on:click="openModal(appName)">
+          <img class="img" v-bind:src="appName.icon_url" alt="AppLogo" />
+          <span class="name">{{ appName.app_dispay_name }}</span>
+          <p>Short Description</p>
+        </div>
+      </div>
     </div>
     <div>
-      <b-modal size="huge" class="Modal" id="appModal" centered :title="appInfo.short_name" hide-footer>
+      <b-modal id="appModal" centered :title="appInfo.value.short_name" hide-footer>
         <div>
-          <p style="font-family: 'Helvetica', 'sans-serif'"><a style="color:#176bae; font-weight:bold">Name</a>
+          <p><a style="color:#176bae; font-weight:bold">Name</a>
             <br>
             {{appInfo.name}}
           </p>
-          <p><a style="color:#176bae; font-weight:bold">Version</a>
-            <br>
-            {{appInfo.version}}
-          </p>
-          <p><a style="color:#176bae; font-weight:bold">Catalogue URL</a>
-            <br>
-            {{appInfo.catalogue_url}}
-          </p>
-          <p><a style="color:#176bae; font-weight:bold">Application URL</a>
-            <br>
-            {{appInfo.application_url}}
-          </p>
-          <p><a style="color:#176bae; font-weight:bold">Tags</a>
-            <br>
-            {{appInfo.tags}}
-          </p>
-          <p><a style="color:#176bae; font-weight:bold">Description</a>
-            <br>
-            {{appInfo.description}}
-          </p>
+          <p>{{appInfo.name}}</p>
         </div>
         <b-button block @click="$bvModal.hide('appModal')">Install</b-button>
       </b-modal>
@@ -38,25 +26,30 @@
 </template>
 
 <script>
-import StoreApp from "./StoreApp.vue";
 import Vue from "vue";
 
 export default {
   components: {
-    StoreApp,
   },
 
   methods: {
-    handleClick(appInfo) {
-      this.appInfo = appInfo;
-      this.$bvModal.show("appModal");
-    },
+    openModal(appName){
+      this.appInfo.value="";
+      this.$bvModal.show('appModal');
+      const axios = require("axios");
+      var self = this;
+      axios.get(appName.versions[0].appinfo).then((response) => {
+      Vue.set(self.appInfo, "value", response.data);
+      console.log(response.data);
+    });
+      console.log(this.appInfo);
+    }
   },
 
   mounted() {
     const axios = require("axios");
     var self = this;
-    axios.get("http://127.0.0.1:5000/api/v1/apps").then((response) => {
+    axios.get("http://127.0.0.1:5010/api/v1/apps").then((response) => {
       Vue.set(self.apps, "value", response.data);
       console.log(response.data);
     });
@@ -65,7 +58,7 @@ export default {
   data() {
     return {
       apps: {},
-      appInfo: {},
+      appInfo: {value:""},
     };
   },
 };
@@ -88,7 +81,6 @@ export default {
   color: white;
   background-color: #176bae !important;
   cursor: pointer;
-  border-radius: 0.25rem;
 }
 
 .img {
@@ -96,7 +88,7 @@ export default {
   width: 90px;
   float: left;
   margin-bottom: 10px;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 6px;
 }
 
 .name {
