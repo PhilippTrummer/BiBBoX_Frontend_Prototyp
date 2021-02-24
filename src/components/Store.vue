@@ -3,7 +3,8 @@
     <div v-for="appGroup in this.apps.value" :key="appGroup">
       <br><h1><a style="color: #176bae; text-align: left; padding: 0 10px; margin-bottom: 15px; font-size: 20px;">{{ appGroup.group_name }}</a></h1>
       <div class="storeApp" v-for="appName in appGroup.group_members" :key="appName.app_dispay_name" >
-        <div class="container" v-on:click="openModal(appName)">
+        <!-- <div class="container" v-on:click="openModal(appName)"> -->
+          <div class="container" @click.stop="dialog = true" v-on:click="openModal(appName)">
           <img class="img" v-bind:src="appName.icon_url" alt="AppLogo" />
           <span class="name">{{ appName.app_dispay_name }}</span>
           <p>Short Description</p>
@@ -11,16 +12,61 @@
       </div>
     </div>
     <div>
-      <b-modal id="appModal" centered :title="appInfo.value.short_name" hide-footer >
-        <div>
-          <p><a style="color:#176bae; font-weight:bold">Name</a>
+     <v-dialog
+        v-model="dialog"
+        width="500"
+      >
+        <v-card>
+          <v-card-title class="headline grey lighten-2">
+            {{appInfo.value.name}}
+          </v-card-title>
+  
+          <v-card-text class="text-left">
+          <p></p>
+          <p><a style="color:#176bae; font-size:15px; font-weight:bold">Shortname</a>
             <br>
-            {{appInfo.name}}
+            {{appInfo.value.short_name}}
           </p>
-          <p>{{appInfo.name}}</p>
-        </div>
-        <b-button block @click="$bvModal.hide('appModal')">Install</b-button>
-      </b-modal>    
+          <p><a style="color:#176bae; font-size:15px; font-weight:bold">Version</a>
+            <br>
+            {{appInfo.value.version}}
+          </p>
+          <p><a style="color:#176bae; font-size:15px; font-weight:bold">GitHub URL</a>
+            <br>
+            {{appInfo.value.application_documentation_url}}
+          </p>
+          <p><a style="color:#176bae; font-size:15px; font-weight:bold">Catalogue URL</a>
+            <br>
+            {{appInfo.value.catalogue_url}}
+          </p>
+          <p><a style="color:#176bae; font-size:15px; font-weight:bold">Application URL</a>
+            <br>
+            {{appInfo.value.application_url}}
+          </p>
+          <p><a style="color:#176bae; font-size:15px; font-weight:bold">Tags</a>
+            <br>
+            {{appInfo.value.tags}}
+          </p>
+          <p><a style="color:#176bae; font-size:15px; font-weight:bold">Description</a>
+            <br>
+            {{appInfo.value.description}}
+          </p>
+          </v-card-text>
+  
+          <v-divider></v-divider>
+  
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              text
+              @click="dialog = false"
+            >
+              Install
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog> 
     </div>
   </div>
 </template>
@@ -35,7 +81,6 @@ export default {
   methods: {
     openModal(appName){
       this.appInfo.value="";
-      this.$bvModal.show('appModal');
       const axios = require("axios");
       var self = this;
       axios.get(appName.versions[0].appinfo).then((response) => {
@@ -59,6 +104,7 @@ export default {
     return {
       apps: {},
       appInfo: {value:""},
+      dialog: false
     };
   },
 };
