@@ -2,6 +2,7 @@
   <div id="app">
   <v-app id="inspire">
     <v-footer
+      absolute
       color="grey darken-1"
       padless
     >

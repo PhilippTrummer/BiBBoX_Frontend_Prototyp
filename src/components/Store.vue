@@ -122,6 +122,7 @@ export default {
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
   margin: 10px;
   font-size: 13px;
+
 }
 
 .storeApp:hover {
