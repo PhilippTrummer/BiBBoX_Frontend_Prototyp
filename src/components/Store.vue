@@ -11,7 +11,7 @@
       </div>
     </div>
     <div>
-      <b-modal id="appModal" centered :title="appInfo.value.short_name" hide-footer>
+      <b-modal id="appModal" centered :title="appInfo.value.short_name" hide-footer >
         <div>
           <p><a style="color:#176bae; font-weight:bold">Name</a>
             <br>
@@ -19,16 +19,20 @@
           </p>
           <p>{{appInfo.name}}</p>
         </div>
-        <b-button block @click="$bvModal.hide('appModal')">Install</b-button>
-      </b-modal>
+      </b-modal>    
     </div>
   </div>
 </template>
 
 <script>
+
+//http://127.0.0.1:5010/api/v1/apps/
+//import axios from "axios";
 import Vue from "vue";
 
 export default {
+  //el: '#app',
+
   components: {
   },
 
@@ -62,6 +66,7 @@ export default {
     };
   },
 };
+
 </script>
 
 <style>
