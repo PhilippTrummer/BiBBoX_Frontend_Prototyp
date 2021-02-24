@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <img class="nav" alt="logo" src="./logo.png" />
+      <img class="nav" alt="logo" src="../assets/logo.png" />
       <b-navbar-brand href="#">silicolab</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

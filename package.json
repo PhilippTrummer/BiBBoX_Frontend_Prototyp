@@ -13,7 +13,8 @@
     "bootstrap-vue": "^2.20.1",
     "core-js": "^3.6.5",
     "vue": "^2.6.12",
-    "vue-axios": "^3.2.0"
+    "vue-axios": "^3.2.0",
+    "vuetify": "^2.4.0"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.11.5",
@@ -27,10 +28,12 @@
     "mutationobserver-shim": "^0.3.7",
     "popper.js": "^1.16.1",
     "portal-vue": "^2.1.7",
-    "sass": "^1.26.11",
+    "sass": "^1.32.0",
     "sass-loader": "^10.0.2",
     "vue-cli-plugin-bootstrap-vue": "~0.7.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-cli-plugin-vuetify": "~2.1.0",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.7.0"
   },
   "eslintConfig": {
     "root": true,
