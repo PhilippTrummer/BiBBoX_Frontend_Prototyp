@@ -1,24 +1,24 @@
 <template>
   <div>
-     <Navbar />
-     <Store />
-     <Footer />
+    <Navbar />
+    <Store />
+    <Footer />
   </div>
 </template>
 
 <script>
-import Store from './components/Store.vue'
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer';
+import Store from "./components/Store.vue";
+import Navbar from "./components/Navbar.vue";
+import Footer from "./components/Footer";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Store,
     Navbar,
     Footer,
-  }
-}
+  },
+};
 </script>
 
 <style>
