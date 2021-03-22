@@ -2,45 +2,54 @@
   <div style="display: flex; flex-flow: row wrap">
     <div class="row">
       <div class="col-2">
-        <div style="padding-top: 80px; padding-left: 15px">
+        <div style="padding-top: 80px; padding-left: 15px;">
           <h3 style="padding-bottom: 15px">Tags</h3>
-          <div v-for="tag in this.tags" :key="tag" class="">
-            <div class="row">
-              <!-- <ul class="">
-                <li class="">
-                  <p>{{ tag }}</p>
-                </li>
-              </ul> -->
-              <div class="col-2"><input type="checkbox" /></div>
-              <div class="col-10">
-                <p>{{ tag }}</p>
-              </div>
-            </div>
-          </div>
+          <ul id="taglist">
+            <li
+              v-for="tag in this.tags"
+              :key="tag"
+              style="list-style-type:none"
+            >
+              <input
+                type="checkbox"
+                @change="check($event)"
+                v-model="tagsSelected"
+                :value="tag"
+              />
+              {{ tag }}
+            </li>
+          </ul>
         </div>
       </div>
       <div class="col-10">
-        <div v-for="appGroup in this.apps.value" :key="appGroup">
+        <div
+          v-for="appGroup in this.apps.value"
+          :key="appGroup"
+          :value="appGroup.group_name"
+          :id="appGroup.group_name"
+        >
           <br />
           <div>
             <h1>
               <a
                 style="
-                  color: #176bae;
-                  text-align: left;
-                  padding: 0 10px;
-                  margin-bottom: 15px;
-                  font-size: 20px;
-                "
+                color: #176bae;
+                text-align: left;
+                padding: 0 10px;
+                margin-bottom: 15px;
+                font-size: 20px;
+              "
                 >{{ appGroup.group_name }}</a
               >
             </h1>
           </div>
           <div class="row">
             <div
-              class="storeApp"
+              class="storeApp "
               v-for="appName in appGroup.group_members"
               :key="appName.app_dispay_name"
+              :value="appName"
+              :id="appName.app_name"
             >
               <!-- <div class="container" v-on:click="openModal(appName)"> -->
               <div
@@ -145,7 +154,82 @@ export default {
         Vue.set(self.appInfo, "value", response.data);
         console.log(response.data);
       });
-      console.log(this.appInfo);
+      //console.log(this.appInfo);
+    },
+    check: function(e) {
+      this.$nextTick(() => {
+        console.log(this.tagsSelected, e);
+        let allApps = this.apps.value;
+
+        if (this.tagsSelected == "") {
+          for (let group = 0; group < allApps.length; group++) {
+            document.getElementById(allApps[group].group_name).style.display =
+              "block";
+            for (
+              let groupmember = 0;
+              groupmember < allApps[group].group_members.length;
+              groupmember++
+            ) {
+              document.getElementById(
+                allApps[group].group_members[groupmember].app_name
+              ).style.display = "block";
+            }
+          }
+        } else {
+          for (let group = 0; group < allApps.length; group++) {
+            document.getElementById(allApps[group].group_name).style.display =
+              "none";
+            for (
+              let groupmember = 0;
+              groupmember < allApps[group].group_members.length;
+              groupmember++
+            ) {
+              document.getElementById(
+                allApps[group].group_members[groupmember].app_name
+              ).style.display = "none";
+            }
+          }
+
+          for (let group = 0; group < allApps.length; group++) {
+            for (
+              let groupmember = 0;
+              groupmember < allApps[group].group_members.length;
+              groupmember++
+            ) {
+              for (
+                let tagsperapp = 0;
+                tagsperapp <
+                allApps[group].group_members[groupmember].tags.length;
+                tagsperapp++
+              ) {
+                for (
+                  let selectedtag = 0;
+                  selectedtag < this.tagsSelected.length;
+                  selectedtag++
+                ) {
+                  if (
+                    allApps[group].group_members[groupmember].tags[
+                      tagsperapp
+                    ] == this.tagsSelected[selectedtag]
+                  ) {
+                    console.log(
+                      allApps[group].group_members[groupmember].app_name
+                    );
+                    document.getElementById(
+                      allApps[group].group_members[groupmember].app_name
+                    ).style.display = "block";
+                    document.getElementById(
+                      allApps[group].group_name
+                    ).style.display = "block";
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        //console.log(this.appsWithTags);
+      });
     },
   },
 
@@ -191,6 +275,8 @@ export default {
       appInfo: { value: "" },
       dialog: false,
       tags: [],
+      tagsSelected: [],
+      appsWithTags: [],
     };
   },
 };
@@ -242,5 +328,10 @@ function checkIfTagExist(giventag, tags) {
 
 .storeApp:hover .name {
   border-bottom: solid 1px white;
+}
+
+.modal .modal-huge {
+  max-width: 1000px;
+  width: 1000px !important;
 }
 </style>
