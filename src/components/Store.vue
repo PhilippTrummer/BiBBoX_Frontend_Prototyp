@@ -2,13 +2,13 @@
   <div style="display: flex; flex-flow: row wrap">
     <div class="row">
       <div class="col-2">
-        <div style="padding-top: 80px; padding-left: 15px;">
+        <div style="padding-top: 80px; padding-left: 15px">
           <h3 style="padding-bottom: 15px">Tags</h3>
           <ul id="taglist">
             <li
               v-for="tag in this.tags"
               :key="tag"
-              style="list-style-type:none"
+              style="list-style-type: none"
             >
               <input
                 type="checkbox"
@@ -24,39 +24,27 @@
       <div class="col-10">
         <div
           v-for="appGroup in this.apps.value"
-          :key="appGroup"
+          :key="appGroup.group_name"
           :value="appGroup.group_name"
           :id="appGroup.group_name"
         >
           <br />
           <div>
             <h1>
-              <a
-                style="
-                color: #176bae;
-                text-align: left;
-                padding: 0 10px;
-                margin-bottom: 15px;
-                font-size: 20px;
-              "
-                >{{ appGroup.group_name }}</a
-              >
+              <a style="margin-bottom: 15px; font-size: 20px">{{
+                appGroup.group_name
+              }}</a>
             </h1>
           </div>
           <div class="row">
             <div
-              class="storeApp "
+              class="storeApp"
               v-for="appName in appGroup.group_members"
               :key="appName.app_dispay_name"
               :value="appName"
               :id="appName.app_name"
             >
-              <!-- <div class="container" v-on:click="openModal(appName)"> -->
-              <div
-                class=""
-                @click.stop="dialog = true"
-                v-on:click="openModal(appName)"
-              >
+              <div @click.stop="dialog = true" v-on:click="openModal(appName)">
                 <img class="img" v-bind:src="appName.icon_url" alt="AppLogo" />
                 <span class="name">{{ appName.app_dispay_name }}</span>
               </div>
@@ -81,24 +69,28 @@
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
+                    >Docker Versions</a
+                  >
+                  <br />
+                </p>
+                  <select name="versions" id="v">
+                    <option v-for="(appVersion, index) in allVersions" :key="index" v-on:click="allVersionIndex=index;">{{appVersion.dVersion}}</option>
+
+                  </select>
+                <p>
+                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Version</a
                   >
                   <br />
-                  {{ appInfo.value.version }}
-                </p>
-                <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
-                    >GitHub URL</a
-                  >
-                  <br />
-                  {{ appInfo.value.application_documentation_url }}
+                  <a v-if="allVersions[allVersionIndex]">{{ allVersions[allVersionIndex].version }}</a>
+                  
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Catalogue URL</a
                   >
                   <br />
-                  {{ appInfo.value.catalogue_url }}
+                  <a v-if="allVersions[0]">{{ allVersions[0].catalogue_url }}</a>
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
@@ -149,14 +141,20 @@ export default {
     openModal(appName) {
       this.appInfo.value = "";
       const axios = require("axios");
-      var self = this;
-      axios.get(appName.versions[0].appinfo).then((response) => {
-        Vue.set(self.appInfo, "value", response.data);
-        console.log(response.data);
-      });
-      //console.log(this.appInfo);
+      console.log(appName);
+      this.allVersions = [];
+      for (var i = 0; i < appName.versions.length; i++) {
+        let current = appName.versions[i].docker_version;
+        axios.get(appName.versions[i].appinfo).then((response) => {
+          console.log(current);
+          response.data["dVersion"] = current;
+          this.allVersions.push(response.data);
+          console.log(response.data);
+        });
+      }
     },
-    check: function(e) {
+
+    check: function (e) {
       this.$nextTick(() => {
         console.log(this.tagsSelected, e);
         let allApps = this.apps.value;
@@ -227,8 +225,6 @@ export default {
             }
           }
         }
-
-        //console.log(this.appsWithTags);
       });
     },
   },
@@ -277,9 +273,12 @@ export default {
       tags: [],
       tagsSelected: [],
       appsWithTags: [],
+      allVersions: [0],
+      allVersionIndex: 0
     };
   },
 };
+
 function checkIfTagExist(giventag, tags) {
   for (var i = 0; i < tags.length; i++) {
     if (tags[i] == giventag) {
