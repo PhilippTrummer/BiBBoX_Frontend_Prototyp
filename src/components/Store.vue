@@ -65,53 +65,53 @@
                     >Shortname</a
                   >
                   <br />
-                  {{ appInfo.value.short_name }}
+
+                  <a v-if="allVersions[allVersionIndex]">{{ allVersions[allVersionIndex].short_name }}</a>
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Docker Versions</a
                   >
-                  <br />
                 </p>
                   <select name="versions" id="v">
                     <option v-for="(appVersion, index) in allVersions" :key="index" v-on:click="allVersionIndex=index;">{{appVersion.dVersion}}</option>
 
                   </select>
+                  <br />
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Version</a
                   >
                   <br />
                   <a v-if="allVersions[allVersionIndex]">{{ allVersions[allVersionIndex].version }}</a>
-                  
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Catalogue URL</a
                   >
                   <br />
-                  <a v-if="allVersions[0]">{{ allVersions[0].catalogue_url }}</a>
+                  <a v-if="allVersions[allVersionIndex]">{{ allVersions[allVersionIndex].catalogue_url }}</a>
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Application URL</a
                   >
                   <br />
-                  {{ appInfo.value.application_url }}
+                  <a v-if="allVersions[allVersionIndex]">{{ allVersions[allVersionIndex].application_url }}</a>
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Tags</a
                   >
                   <br />
-                  {{ appInfo.value.tags }}
+                  <a v-if="allVersions[allVersionIndex]">{{ allVersions[allVersionIndex].tags }}</a>
                 </p>
                 <p>
                   <a style="color: #176bae; font-size: 15px; font-weight: bold"
                     >Description</a
                   >
                   <br />
-                  {{ appInfo.value.description }}
+                  <a v-if="allVersions[allVersionIndex]">{{ allVersions[allVersionIndex].description }}</a>
                 </p>
               </v-card-text>
 
