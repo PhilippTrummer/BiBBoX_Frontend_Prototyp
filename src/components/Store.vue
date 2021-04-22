@@ -2,7 +2,7 @@
   <div style="display: flex; flex-flow: row wrap">
     <div class="row">
       <div class="col-2">
-        <div style="padding-top: 25px; padding-left: 15px">
+        <div style="padding-top: 24px; padding-left: 15px">
           <h1>
           <a style="font-size: 20px; color: #176bae;">Tags</a>
           </h1>
