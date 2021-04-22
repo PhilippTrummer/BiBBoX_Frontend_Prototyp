@@ -2,8 +2,10 @@
   <div style="display: flex; flex-flow: row wrap">
     <div class="row">
       <div class="col-2">
-        <div style="padding-top: 80px; padding-left: 15px">
-          <h3 style="padding-bottom: 15px">Tags</h3>
+        <div style="padding-top: 25px; padding-left: 15px">
+          <h1>
+          <a style="font-size: 20px; color: #176bae;">Tags</a>
+          </h1>
           <ul id="taglist">
             <li
               v-for="tag in this.tags"
@@ -31,7 +33,7 @@
           <br />
           <div>
             <h1>
-              <a style="margin-bottom: 15px; font-size: 20px">{{
+              <a style="margin-bottom: 15px; font-size: 20px; color: #176bae">{{
                 appGroup.group_name
               }}</a>
             </h1>
