@@ -149,7 +149,7 @@
           let allApps = this.apps.value;
 
           if (this.searchbar == "") {
-            this.setappsonblock();
+            this.checktags();
           } else {
             this.setappsonnone();
 
