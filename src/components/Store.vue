@@ -30,10 +30,16 @@
             </h1>
           </div>
           <div class="row">
-            <div class="storeApp flex-container" style="justify-content: center"
+            <div class="storeApp flex-container" style="justify-content: center; position: relative;"
               v-for="appName in appGroup.group_members" :key="appName.app_dispay_name" :value="appName"
               :id="appName.app_name">
               <div @click.stop="dialog = true" v-on:click="openModal(appName)">
+                <div v-if="appName.decoration == 'new'">
+                  <img class="img schleifen" src="@/assets/new.png" />
+                </div>
+                <div v-else-if="appName.decoration == 'announced'">
+                  <img class="img schleifen" src="@/assets/announced.png" />
+                </div>
                 <img class="img" v-bind:src="appName.icon_url" alt="AppLogo" />
                 <span class="name">{{ appName.app_dispay_name }}</span>
                 <p class="shortdescription">{{ appName.short_description }}</p>
@@ -373,5 +379,13 @@
   .modal .modal-huge {
     max-width: 1000px;
     width: 1000px !important;
+  }
+
+  .schleifen {
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    top: 0;
+    right: 0;
   }
 </style>
