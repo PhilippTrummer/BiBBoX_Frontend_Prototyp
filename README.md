@@ -17,3 +17,8 @@ npm install axios
 vue add bootstrap-vue
 vue add vuetify
 ```
+
+## Troubleshooting
+```
+sh: 1: vue-cli-service: not found => vue add babel
+```

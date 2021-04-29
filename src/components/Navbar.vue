@@ -10,7 +10,6 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item class="co" href="#">Lab Description</b-nav-item>
-            <b-nav-item href="#">Biobank</b-nav-item>
             <b-nav-item href="#">Applications</b-nav-item>
             <b-nav-item href="#">Store</b-nav-item>
             <b-nav-item href="#">Activities</b-nav-item>
@@ -53,5 +52,7 @@ export default {};
 
 .navbar-dark .navbar-nav .nav-link:hover {
     background-color: #005090;
+    border-radius: 28px;
 }
+
 </style>
