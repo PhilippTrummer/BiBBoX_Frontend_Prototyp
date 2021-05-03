@@ -60,10 +60,10 @@
             >
               <div @click.stop="dialog = true" v-on:click="openModal(appName)">
                 <div v-if="appName.decoration == 'new'">
-                  <img class="img schleifen" src="@/assets/new.png" />
+                  <img class="img schleifen" src="../assets/new.png" />
                 </div>
                 <div v-else-if="appName.decoration == 'announced'">
-                  <img class="img schleifen" src="@/assets/announced.png" />
+                  <img class="img schleifen" src="../assets/announced.png" />
                 </div>
                 <img class="img" v-bind:src="appName.icon_url" alt="AppLogo" />
                 <span class="name">{{ appName.app_dispay_name }}</span>

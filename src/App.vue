@@ -1,6 +1,32 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <b-navbar toggleable="lg" type="dark" variant="dark">
+      <router-link exact to="/">
+        <img class="nav" alt="logo" src="./assets/logo.png" />
+      </router-link>
+      <router-link exact to="/">
+        <b-navbar-brand>silicolab</b-navbar-brand>
+      </router-link>
+      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+      <b-navbar-nav class="ml-auto">
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item>Lab Description</b-nav-item>
+            <b-nav-item>Applications</b-nav-item>
+            <b-nav-item>
+              <router-link class="navLinkStyle" to="/store" exact
+                >Store</router-link
+              >
+            </b-nav-item>
+            <b-nav-item>Activities</b-nav-item>
+            <b-nav-item>Settings</b-nav-item>
+            <b-avatar :size="40"></b-avatar>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar-nav>
+    </b-navbar>
+    <!--v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -30,7 +56,7 @@
       <v-btn flat>
         <router-link to="/store" exact>Store</router-link>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar-->
 
     <v-main>
       <router-view />
@@ -62,26 +88,54 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
 .navLinkStyle {
   display: inline-block;
-  text-decoration: none;
+  text-decoration: none !important;
   color: white !important;
 }
 
 .footerLinkStyle {
   display: inline-block;
-  text-decoration: none;
+  text-decoration: none !important;
   color: white !important;
 }
 
 .router-link-active.navLinkStyle {
-  background: rgb(255, 6, 6);
+  background-color: #005090;
+  border-radius: 28px;
   color: white;
+}
+
+.navbar.navbar-dark.bg-dark {
+  background-color: #176bae !important;
+  font-family: "Verdana", "sans-serif";
+  font-size: 18px;
+}
+
+.nav {
+  height: 40px;
+  width: 60px;
+  padding-right: 15px;
+  margin-right: 15px;
+  border-right: solid 2px #ffffff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-dark .navbar-brand {
+  font-family: "Verdana", "sans-serif";
+  font-size: 28px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  background-color: #005090;
+  border-radius: 28px;
+  color: #ffffff;
 }
 </style>
