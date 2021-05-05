@@ -12,52 +12,17 @@
       <b-navbar-nav class="ml-auto">
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item>Lab Description</b-nav-item>
-            <b-nav-item>Applications</b-nav-item>
-            <b-nav-item>
-              <router-link class="navLinkStyle" to="/store" exact
-                >Store</router-link
-              >
-            </b-nav-item>
-            <b-nav-item>Activities</b-nav-item>
-            <b-nav-item>Settings</b-nav-item>
+            <b-nav-item><router-link class="navLinkStyle" to="/labdescription" exact >Lab Description</router-link></b-nav-item>
+            <b-nav-item><router-link class="navLinkStyle" to="/applications" exact >Applications</router-link></b-nav-item>
+            <b-nav-item><router-link class="navLinkStyle" to="/store" exact>Store</router-link></b-nav-item>
+            <b-nav-item><router-link class="navLinkStyle" to="/activities" exact>Activities</router-link></b-nav-item>
+            <b-nav-item><router-link class="navLinkStyle" to="/settings" exact>Settings</router-link></b-nav-item>
             <b-avatar :size="40"></b-avatar>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar-nav>
     </b-navbar>
-    <!--v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn flat>
-        <router-link class="navLinkStyle" exact to="/">Home</router-link>
-      </v-btn>
-
-      <v-btn flat>
-        <router-link to="/store" exact>Store</router-link>
-      </v-btn>
-    </v-app-bar-->
-
+    
     <v-main>
       <router-view />
     </v-main>
@@ -105,9 +70,8 @@ export default {};
 }
 
 .router-link-active.navLinkStyle {
-  background-color: #005090;
-  border-radius: 28px;
   color: white;
+  text-decoration: underline !important;
 }
 
 .navbar.navbar-dark.bg-dark {

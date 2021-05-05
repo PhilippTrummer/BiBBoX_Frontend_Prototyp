@@ -11,9 +11,29 @@ const routes = [
     component: Home
   },
   {
+    path: '/labdescription',
+    name: 'LabDescription',
+    component: () => import('../views/LabDescription.vue')
+  },
+  {
+    path: '/applications',
+    name: 'Applications',
+    component: () => import('../views/Applications.vue')
+  },
+  {
     path: '/store',
     name: 'Store',
     component: () => import('../views/Store.vue')
+  },
+  {
+    path: '/activities',
+    name: 'Activities',
+    component: () => import('../views/Activities.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('../views/Settings.vue')
   },
   {
     path: '/contact',

@@ -54,7 +54,7 @@
               class="storeApp flex-container"
               style="justify-content: center; position: relative"
               v-for="appName in appGroup.group_members"
-              :key="appName.app_dispay_name"
+              :key="appName.app_display_name"
               :value="appName"
               :id="appName.app_name"
             >
@@ -66,7 +66,7 @@
                   <img class="img schleifen" src="../assets/announced.png" />
                 </div>
                 <img class="img" v-bind:src="appName.icon_url" alt="AppLogo" />
-                <span class="name">{{ appName.app_dispay_name }}</span>
+                <span class="name">{{ appName.app_display_name }}</span>
                 <p class="shortDescription">{{ appName.short_description }}</p>
               </div>
             </div>
@@ -210,7 +210,7 @@ export default {
               groupmember++
             ) {
               if (
-                allApps[group].group_members[groupmember].app_dispay_name
+                allApps[group].group_members[groupmember].app_display_name
                   .toLowerCase()
                   .includes(this.searchbar.toLowerCase()) ||
                 allApps[group].group_members[groupmember].app_name
