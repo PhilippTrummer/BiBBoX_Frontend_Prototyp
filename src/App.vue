@@ -4,7 +4,7 @@
     <Store />
     <Footer />
   </div>
-</template>
+</template> 
 
 <script>
 import Store from "./components/Store.vue";
