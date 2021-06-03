@@ -77,23 +77,16 @@
           <v-dialog v-model="dialog" width="500">
             <v-card>
               <v-card-title class="headline grey lighten-2">
-                {{ appInfo.value.name }}
+                <a v-if="allVersions[allVersionIndex]">{{
+                    allVersions[allVersionIndex].short_name
+                  }}</a>
               </v-card-title>
 
               <v-card-text class="text-left">
                 <p></p>
-                <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
-                    >Shortname</a
-                  >
-                  <br />
 
-                  <a v-if="allVersions[allVersionIndex]">{{
-                    allVersions[allVersionIndex].short_name
-                  }}</a>
-                </p>
                 <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
+                  <a class=dialogEntries
                     >Docker Versions</a
                   >
                 </p>
@@ -108,7 +101,7 @@
                 </select>
                 <br />
                 <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
+                  <a class=dialogEntries
                     >Version</a
                   >
                   <br />
@@ -117,7 +110,7 @@
                   }}</a>
                 </p>
                 <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
+                  <a class=dialogEntries
                     >Catalogue URL</a
                   >
                   <br />
@@ -126,7 +119,7 @@
                   }}</a>
                 </p>
                 <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
+                  <a class=dialogEntries
                     >Application URL</a
                   >
                   <br />
@@ -135,7 +128,7 @@
                   }}</a>
                 </p>
                 <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
+                  <a class=dialogEntries
                     >Tags</a
                   >
                   <br />
@@ -144,7 +137,7 @@
                   }}</a>
                 </p>
                 <p>
-                  <a style="color: #176bae; font-size: 15px; font-weight: bold"
+                  <a class=dialogEntries
                     >Description</a
                   >
                   <br />
@@ -437,6 +430,13 @@ function checkIfTagExist(giventag, tags) {
   width: 80px;
   top: 0;
   right: 0;
+}
+
+.dialogEntries {
+  font-size: 15px; 
+  font-weight: bold   ;
+  text-decoration: none !important;
+  color: #176bae !important;
 }
 
 </style>
