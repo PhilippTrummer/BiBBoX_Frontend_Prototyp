@@ -78,6 +78,7 @@ export default {};
   background-color: #176bae !important;
   font-family: "Verdana", "sans-serif";
   font-size: 18px;
+  z-index: 9 !important;
 }
 
 .nav {
@@ -102,4 +103,6 @@ export default {};
   border-radius: 28px;
   color: #ffffff;
 }
+
+
 </style>

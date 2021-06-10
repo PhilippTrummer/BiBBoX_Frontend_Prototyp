@@ -2,9 +2,9 @@
   <div style="display: flex; flex-flow: row wrap">
     <div class="row">
       <div class="col-2">
-        <div style="padding-top: 24px; padding-left: 15px">
+        <div style="padding-top: 24px; padding-left: 15px;">
           <h1>
-            <a style="font-size: 20px; color: #176bae">Tags</a>
+            <a style="font-size: 20px; color: #176bae">Searchbar</a>
           </h1>
           <div style="padding-bottom: 20px">
             <input
@@ -17,11 +17,14 @@
               v-model="searchbar"
             />
           </div>
+          <h1>
+            <a style="font-size: 20px; color: #176bae">Tags</a>
+          </h1>
+          <div class="test2">
           <ul id="taglist">
-            <li
+            <li style="list-style-type: none; font-size: 15px"
               v-for="tag in this.tags"
               :key="tag"
-              style="list-style-type: none"
             >
               <input
                 type="checkbox"
@@ -32,17 +35,20 @@
               {{ tag }}
             </li>
           </ul>
+          </div>
         </div>
       </div>
+      <br />
       <div class="col-10">
-        <div
+        <div class="fuck"
           v-for="appGroup in this.apps.value"
           :key="appGroup.group_name"
           :value="appGroup.group_name"
           :id="appGroup.group_name"
         >
-          <br />
-          <div>
+          
+          <div class="test">
+            <br>
             <h1>
               <a style="margin-bottom: 15px; font-size: 20px; color: #176bae">{{
                 appGroup.group_name
@@ -437,6 +443,19 @@ function checkIfTagExist(giventag, tags) {
   width: 80px;
   top: 0;
   right: 0;
+}
+
+.col-2{
+  border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgb(204, 204, 204);
+    padding: 10px;
+}
+
+.fuck{
+  margin-bottom: 20px;
+  border-bottom: solid 1px #DDD;
+  padding-bottom: 30px;
 }
 
 </style>
