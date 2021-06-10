@@ -1,5 +1,9 @@
 <template>
-  <h1>Partners</h1>
+   <div style="padding-top: 24px; padding-left: 15px">
+    <h1>
+      <a style="font-size: 20px; color: #176bae">Partners</a>
+   </h1>
+  </div>
 </template>
 
 <script>
