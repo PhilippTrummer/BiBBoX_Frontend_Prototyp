@@ -20,7 +20,7 @@
           <h1>
             <a style="font-size: 20px; color: #176bae">Tags</a>
           </h1>
-          <div class="test2">
+          <div>
           <ul id="taglist">
             <li style="list-style-type: none; font-size: 15px"
               v-for="tag in this.tags"
@@ -40,14 +40,14 @@
       </div>
       <br />
       <div class="col-10">
-        <div class="fuck"
+        <div class="appDivider"
           v-for="appGroup in this.apps.value"
           :key="appGroup.group_name"
           :value="appGroup.group_name"
           :id="appGroup.group_name"
         >
           
-          <div class="test">
+          <div>
             <br>
             <h1>
               <a style="margin-bottom: 15px; font-size: 20px; color: #176bae">{{
@@ -66,10 +66,10 @@
             >
               <div @click.stop="dialog = true" v-on:click="openModal(appName)">
                 <div v-if="appName.decoration == 'new'">
-                  <img class="img schleifen" src="../assets/new.png" />
+                  <img class="img decoration" src="../assets/new.png" />
                 </div>
                 <div v-else-if="appName.decoration == 'announced'">
-                  <img class="img schleifen" src="../assets/announced.png" />
+                  <img class="img decoration" src="../assets/announced.png" />
                 </div>
                 <img class="img" v-bind:src="appName.icon_url" alt="AppLogo" />
                 <span class="name">{{ appName.app_display_name }}</span>
@@ -430,7 +430,7 @@ function checkIfTagExist(giventag, tags) {
   width: 1000px !important;
 }
 
-.schleifen {
+.decoration {
   position: absolute;
   height: 80px;
   width: 80px;
@@ -445,7 +445,7 @@ function checkIfTagExist(giventag, tags) {
     padding: 10px;
 }
 
-.fuck{
+.appDivider{
   margin-bottom: 20px;
   border-bottom: solid 1px #DDD;
   padding-bottom: 30px;
